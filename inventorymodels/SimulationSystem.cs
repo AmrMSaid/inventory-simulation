@@ -96,14 +96,50 @@ namespace InventoryModels
                     simulationCase.Demand = 4;
 
                 //Ending inventory
-                if (simulationCase.BeginningInventory < simulationCase.Demand)
+                //if (simulationCase.BeginningInventory < simulationCase.Demand)
+                //{
+                //    simulationCase.EndingInventory = 0;
+                //}
+                //else
+                //{
+                //    if (i == 0)
+                //        simulationCase.EndingInventory = simulationCase.BeginningInventory - simulationCase.Demand;
+                //    else
+                //        simulationCase.EndingInventory = simulationCase.BeginningInventory - simulationCase.Demand - SimulationCases[i - 1].ShortageQuantity;
+                //}
+
+                //if (i == 0 && simulationCase.BeginningInventory - simulationCase.Demand < 0)
+                //{
+                //    simulationCase.EndingInventory = 0;
+                //}
+                //else if (i == 0)
+                //{
+                //    simulationCase.EndingInventory = simulationCase.BeginningInventory - simulationCase.Demand;
+                //}
+                //else if (simulationCase.BeginningInventory - simulationCase.Demand - SimulationCases[i - 1].ShortageQuantity < 0)
+                //{
+                //    simulationCase.EndingInventory = 0;
+                //}
+                //else
+                //{
+                //    simulationCase.EndingInventory = simulationCase.BeginningInventory - simulationCase.Demand - SimulationCases[i - 1].ShortageQuantity;
+                //}
+
+                if (i == 0)
                 {
-                    simulationCase.EndingInventory = 0;
+                    if (simulationCase.BeginningInventory < simulationCase.Demand)
+                    {
+                        simulationCase.EndingInventory = 0;
+                    }
+                    else
+                        simulationCase.EndingInventory = simulationCase.BeginningInventory - simulationCase.Demand;
                 }
                 else
                 {
-                    if (i == 0)
-                        simulationCase.EndingInventory = simulationCase.BeginningInventory - simulationCase.Demand;
+                    if (simulationCase.BeginningInventory - simulationCase.Demand - SimulationCases[i - 1].ShortageQuantity < 0)
+                    {
+                        simulationCase.EndingInventory = 0;
+                    }
                     else
                         simulationCase.EndingInventory = simulationCase.BeginningInventory - simulationCase.Demand - SimulationCases[i - 1].ShortageQuantity;
                 }
@@ -141,8 +177,18 @@ namespace InventoryModels
                 int randomLeadDay = simulationCase.RandomLeadDays;
 
                 //Lead time
+                //Code is right, testing is not.
                 if ((i + 1) % 5 == 0)
+                {
                     simulationCase.LeadDays = 1;
+
+                    //if (LeadDaysDistribution[0].MinRange <= randomLeadDay && randomLeadDay <= LeadDaysDistribution[0].MaxRange)
+                    //    simulationCase.LeadDays = 1;
+                    //else if (LeadDaysDistribution[1].MinRange <= randomLeadDay && randomLeadDay <= LeadDaysDistribution[1].MaxRange)
+                    //    simulationCase.LeadDays = 2;
+                    //else
+                    //    simulationCase.LeadDays = 3;
+                }
                 else
                     simulationCase.LeadDays = 0;
 
