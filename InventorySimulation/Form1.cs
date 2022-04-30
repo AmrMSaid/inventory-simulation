@@ -18,17 +18,13 @@ namespace InventorySimulation
 
             dataGridView1.DataSource = simulationSystem.SimulationCases;
             label1.Text = simulationSystem.PerformanceMeasures.EndingInventoryAverage.ToString();
+            label2.Text = simulationSystem.PerformanceMeasures.ShortageQuantityAverage.ToString();
 
             string testingManager = TestingManager.Test(simulationSystem, Constants.FileNames.TestCase1);
             MessageBox.Show(testingManager);
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
         {
 
         }
