@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace InventoryModels
 {
@@ -166,8 +165,10 @@ namespace InventoryModels
                 //Days until order arrives
                 if (i == 0)
                     simulationCase.DaysToOrder = 1;
-                else
+                else if ((i + 1) % 5 == 0)
                     simulationCase.DaysToOrder = simulationCase.LeadDays;
+                else
+                    simulationCase.DaysToOrder = Math.Max(SimulationCases[i - 1].DaysToOrder - 1, 0);
 
                 SimulationCases.Add(simulationCase);
             }
